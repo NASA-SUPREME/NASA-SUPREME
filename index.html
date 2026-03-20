@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimalist Blue Art Portfolio</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400|Playfair+Display:700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cerulean: #007BA7;
+      --indigo: #4B5D9A;
+      --slate-blue: #6A7BA2;
+      --light-grey: #F7F9FB;
+      --white: #FFFFFF;
+      --shadow: 0 4px 24px rgba(76, 97, 130, 0.08);
+      --gradient: linear-gradient(90deg, var(--cerulean), var(--indigo), var(--slate-blue));
+    }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--light-grey);
+      color: #2A3242;
+      min-height: 100vh;
+    }
+    .watercolor-bg {
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+      opacity: 0.08;
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    header {
+      text-align: center;
+      padding: 120px 0 60px 0;
+      background: var(--white);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      color: var(--cerulean);
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+    .hero-tagline {
+      font-size: 1.3rem;
+      color: var(--indigo);
+      font-weight: 400;
+      margin-bottom: 0;
+    }
+    .about {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 40px;
+      margin-bottom: 40px;
+    }
+    .about-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: var(--gradient);
+      padding: 6px;
+      box-shadow: 0 2px 16px rgba(76, 97, 130, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-photo img {
+      width: 148px;
+      height: 148px;
+      border-radius: 50%;
+      object-fit: cover;
+      filter: grayscale(20%) contrast(1.1);
+    }
+    .about-text {
+      flex: 1;
+    }
+    .about-text h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--indigo);
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .about-text p {
+      font-size: 1.1rem;
+      color: #3A4666;
+      margin-bottom: 0;
+    }
+    .portfolio {
+      margin-bottom: 40px;
+    }
+    .portfolio h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--cerulean);
+      font-size: 2rem;
+      margin-bottom: 24px;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+    .portfolio-item {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative;
+    }
+    .portfolio-item:hover {
+      box-shadow: 0 8px 32px rgba(76, 97, 130, 0.18);
+      transform: translateY(-4px);
+    }
+    .portfolio-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      filter: grayscale(10%) contrast(1.05);
+    }
+    .portfolio-item .desc {
+      padding: 18px 16px 16px 16px;
+    }
+    .portfolio-item .desc h3 {
+      font-size: 1.1rem;
+      color: var(--indigo);
+      margin-bottom: 8px;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .portfolio-item .desc p {
+      font-size: 0.98rem;
+      color: #3A4666;
+      margin-bottom: 0;
+    }
+    .skills {
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 40px;
+      margin-bottom: 40px;
+    }
+    .skills h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--slate-blue);
+      font-size: 2rem;
+      margin-bottom: 24px;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+    .skill {
+      flex: 1 1 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .skill-icon {
+      font-size: 2.2rem;
+      color: var(--cerulean);
+      margin-bottom: 8px;
+    }
+    .skill-title {
+      font-size: 1.1rem;
+      color: var(--indigo);
+      margin-bottom: 6px;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .skill-bar {
+      width: 100%;
+      height: 8px;
+      background: #E3E8F0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: var(--gradient);
+      border-radius: 4px;
+      transition: width 0.6s;
+    }
+    .skill-level {
+      font-size: 0.95rem;
+      color: #3A4666;
+      margin-top: 2px;
+    }
+    footer {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 32px 24px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .footer-social {
+      margin-bottom: 16px;
+    }
+    .footer-social a {
+      display: inline-block;
+      margin: 0 10px;
+      color: var(--cerulean);
+      font-size: 1.5rem;
+      transition: color 0.2s;
+    }
+    .footer-social a:hover {
+      color: var(--indigo);
+    }
+    .footer-email-form {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-email-form input, .footer-email-form textarea {
+      width: 320px;
+      max-width: 100%;
+      padding: 10px;
+      border: 1px solid #E3E8F0;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #F7F9FB;
+      color: #2A3242;
+    }
+    .footer-email-form button {
+      background: var(--gradient);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      padding: 10px 24px;
+      font-size: 1rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .footer-email-form button:hover {
+      background: linear-gradient(90deg, var(--indigo), var(--cerulean), var(--slate-blue));
+    }
+    @media (max-width: 900px) {
+      .about {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+      }
+      .skills-list {
+        flex-direction: column;
+        gap: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="watercolor-bg"></div>
+  <div class="container">
+    <header>
+      <div class="hero-title">Your Name</div>
+      <div class="hero-tagline">Professional Tagline Goes Here</div>
+    </header>
+    <section class="about">
+      <div class="about-photo">
+        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Artistic portrait">
+      </div>
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>
+          Write a short, creative bio here. Highlight your artistic vision, professional experience, and what makes you unique. Use a tone that is both trustworthy and inspiring.
+        </p>
+      </div>
+    </section>
+    <section class="portfolio">
+      <h2>Portfolio Gallery</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Project 1">
+          <div class="desc">
+            <h3>Project Title 1</h3>
+            <p>Brief description of the project, its impact, and your role.</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1503676382389-8bfa158b27e9?auto=format&fit=crop&w=400&q=80" alt="Project 2">
+          <div class="desc">
+            <h3>Project Title 2</h3>
+            <p>Brief description of the project, its impact, and your role.</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1465101178521-c1b5b47a1aef?auto=format&fit=crop&w=400&q=80" alt="Project 3">
+          <div class="desc">
+            <h3>Project Title 3</h3>
+            <p>Brief description of the project, its impact, and your role.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="skills">
+      <h2>Skills & Expertise</h2>
+      <div class="skills-list">
+        <div class="skill">
+          <div class="skill-icon">💻</div>
+          <div class="skill-title">Web Development</div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width: 90%"></div></div>
+          <div class="skill-level">Expert</div>
+        </div>
+        <div class="skill">
+          <div class="skill-icon">🎨</div>
+          <div class="skill-title">UI/UX Design</div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width: 80%"></div></div>
+          <div class="skill-level">Advanced</div>
+        </div>
+        <div class="skill">
+          <div class="skill-icon">🖌️</div>
+          <div class="skill-title">Art Direction</div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width: 75%"></div></div>
+          <div class="skill-level">Advanced</div>
+        </div>
+        <div class="skill">
+          <div class="skill-icon">📈</div>
+          <div class="skill-title">Project Management</div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width: 70%"></div></div>
+          <div class="skill-level">Proficient</div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="footer-social">
+        <a href="#" title="LinkedIn"><span>LinkedIn</span></a>
+        <a href="https://github.com/NASA-SUPREME/NASA-SUPREME" title="GitHub" target="_blank"><span>GitHub</span></a>
+        <a href="#" title="Instagram"><span>Instagram</span></a>
+      </div>
+      <form class="footer-email-form" action="mailto:your@email.com" method="post" enctype="text/plain">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Email</button>
+      </form>
+      <div style="margin-top: 18px; color: #6A7BA2; font-size: 0.95rem;">&copy; 2026 Your Name. All rights reserved.</div>
+    </footer>
+  </div>
+</body>
+</html>
